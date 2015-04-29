@@ -28,4 +28,8 @@
         <item>Vidéos disponibles</item>
         <item>Actualitées</item>
     </string-array>
+    <string name="title_activity_load">LoadActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="loadMessage">Chargement de l\'application</string>
 </resources>

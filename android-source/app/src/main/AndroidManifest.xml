@@ -10,9 +10,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".LoadActivity"
+            android:label="@string/title_activity_load"
+            android:screenOrientation="portrait"> <!--on bloque le mode paysage pour ne pas devoir gérer les onStop... -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
