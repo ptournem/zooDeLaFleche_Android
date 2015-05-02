@@ -24,7 +24,7 @@ public class LoadActivity extends Activity implements LoadDataAsyncResponse{
         Log.i("Debug", "Start");
         // on démarre l'activité en arrière plan
 
-        LoadDataAsyncTask t = new LoadDataAsyncTask();
+        LoadDataAsyncTask t = new LoadDataAsyncTask(this);
         t.setDelegate(this);
         t.execute();
 

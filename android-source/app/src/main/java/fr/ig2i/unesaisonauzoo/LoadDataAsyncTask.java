@@ -13,6 +13,11 @@ import android.util.Log;
  */
 public class LoadDataAsyncTask extends AsyncTask<Application, Void,Boolean>{
     private LoadDataAsyncResponse delegate = null;
+    private Activity activity;
+
+    public LoadDataAsyncTask(Activity a){
+        activity = a;
+    }
 
     public void setDelegate(LoadDataAsyncResponse delegate) {
         this.delegate = delegate;
@@ -26,6 +31,9 @@ public class LoadDataAsyncTask extends AsyncTask<Application, Void,Boolean>{
         Log.i("Debug","doInBackground");
         //TODO : remplacer le sleep par la récupération du programme tv + du planning des spectacles
         try {
+            LoadDataTVProgram loadTvProgram = new LoadDataTVProgram(activity);
+            Log.i("Debug", loadTvProgram.getData());
+
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
