@@ -9,7 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class LoadActivity extends Activity implements LoadDataAsyncResponse{
+public class LoadActivity extends Activity implements LoadDataAsyncResponse {
+    private static String ERR_LOAD = "Impossible de charger les données";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,13 @@ public class LoadActivity extends Activity implements LoadDataAsyncResponse{
 
     @Override
     public void onProcessFinish(Boolean success) {
-        Log.i("Debug","processFinish");
-        if(success) {
-            Intent goToMainActivity = new Intent(this, MainActivity.class);
-            startActivity(goToMainActivity);
+        Log.i("Debug", "processFinish");
+        if (!success) {
+            UneSaisonAuZooApplication application = (UneSaisonAuZooApplication) getApplication();
+            application.alerter(ERR_LOAD);
         }
+        Intent goToMainActivity = new Intent(this, MainActivity.class);
+        startActivity(goToMainActivity);
+
     }
 }
