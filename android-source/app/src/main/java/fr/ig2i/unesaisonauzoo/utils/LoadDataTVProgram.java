@@ -1,28 +1,23 @@
-package fr.ig2i.unesaisonauzoo;
+package fr.ig2i.unesaisonauzoo.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URLConnection;
 import java.util.List;
 
-import fr.ig2i.unesaisonauzoo.metier.Programme;
+import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
+import fr.ig2i.unesaisonauzoo.model.Programme;
 
 /**
  * Created by Paul on 02/05/2015.
  */
 public class LoadDataTVProgram {
 
-    private static String PRG_URL = "http://www.kazer.org/tvguide.xml?u=86s5kv3ubwbdz";
+    private static String PRG_URL = "http://192.168.1.68/programme.xml";
     private Activity a;
     private UneSaisonAuZooApplication application;
 

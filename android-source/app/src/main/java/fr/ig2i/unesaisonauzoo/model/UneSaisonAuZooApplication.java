@@ -1,11 +1,8 @@
-package fr.ig2i.unesaisonauzoo;
+package fr.ig2i.unesaisonauzoo.model;
 
 import android.app.Application;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Vibrator;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -16,11 +13,10 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 
-import fr.ig2i.unesaisonauzoo.metier.Programme;
+import fr.ig2i.unesaisonauzoo.model.Programme;
 
 /**
  * Created by Paul on 02/05/2015.

@@ -1,4 +1,4 @@
-package fr.ig2i.unesaisonauzoo.metier;
+package fr.ig2i.unesaisonauzoo.model;
 
 import java.util.Date;
 

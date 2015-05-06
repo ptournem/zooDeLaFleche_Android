@@ -1,15 +1,15 @@
-package fr.ig2i.unesaisonauzoo;
+package fr.ig2i.unesaisonauzoo.utils;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+
+import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 /**
  * Created by Paul on 29/04/2015.

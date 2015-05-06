@@ -1,4 +1,4 @@
-package fr.ig2i.unesaisonauzoo;
+package fr.ig2i.unesaisonauzoo.utils;
 
 import android.util.Xml;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import fr.ig2i.unesaisonauzoo.metier.Programme;
+import fr.ig2i.unesaisonauzoo.model.Programme;
 
 /**
  * Created by Paul on 03/05/2015.

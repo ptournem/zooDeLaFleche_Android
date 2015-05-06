@@ -1,12 +1,14 @@
-package fr.ig2i.unesaisonauzoo;
+package fr.ig2i.unesaisonauzoo.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncResponse;
+import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncTask;
+import fr.ig2i.unesaisonauzoo.R;
+import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 
 public class LoadActivity extends Activity implements LoadDataAsyncResponse {
