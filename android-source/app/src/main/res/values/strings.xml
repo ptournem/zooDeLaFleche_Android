@@ -14,6 +14,7 @@
     <string-array name="drawerItems">
         <item>Accueil</item>
         <item>Accès</item>
+        <item>Programme TV</item>
         <item>Spectacles</item>
         <item>Episodes</item>
         <item>Vidéos</item>
@@ -23,6 +24,7 @@
     <string-array name="sectionName">
         <item>Accueil</item>
         <item>Accès au zoo</item>
+        <item>Prochain épisodes</item>
         <item>Spectacles</item>
         <item>Episodes disponibles</item>
         <item>Vidéos disponibles</item>
