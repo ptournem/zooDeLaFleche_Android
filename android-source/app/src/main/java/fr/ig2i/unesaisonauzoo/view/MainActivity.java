@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import fr.ig2i.unesaisonauzoo.R;
+import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
 
 
 public class MainActivity extends ActionBarActivity

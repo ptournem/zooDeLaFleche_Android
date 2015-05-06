@@ -1,4 +1,4 @@
-package fr.ig2i.unesaisonauzoo.view;
+package fr.ig2i.unesaisonauzoo.view.fragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
