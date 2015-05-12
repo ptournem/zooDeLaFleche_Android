@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import fr.ig2i.unesaisonauzoo.R;
+import fr.ig2i.unesaisonauzoo.view.fragment.MapFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.ProgrammeTvFragment;
 
@@ -50,7 +51,12 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
-        if(position ==2){
+        if(position ==1){
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, MapFragment.newInstance())
+                    .commit();
+        }
+        else if(position ==2){
             fragmentManager.beginTransaction()
                     .replace(R.id.container, ProgrammeTvFragment.newInstance())
                     .commit();

@@ -17,7 +17,8 @@ import fr.ig2i.unesaisonauzoo.model.Programme;
  */
 public class LoadDataTVProgram {
 
-    private static String PRG_URL = "http://192.168.1.68/programme.xml";
+    // TODO : mettre en ligne le programme de cache sur le vps
+    private static String PRG_URL = "http://192.168.0.126/IG2I/une_saison_au_zoo/programme.php";
     private Activity a;
     private UneSaisonAuZooApplication application;
 
@@ -30,9 +31,6 @@ public class LoadDataTVProgram {
         InputStream stream = null;
         List<Programme> programmes = null;
         ProgrammeTvParser programmeTvParser = new ProgrammeTvParser();
-
-        String xml = application.requete(PRG_URL, null);
-        Log.i("XML", xml);
 
         try {
             stream = application.getDataStream(PRG_URL, null);
