@@ -17,8 +17,7 @@ import fr.ig2i.unesaisonauzoo.model.Programme;
  */
 public class LoadDataTVProgram {
 
-    // TODO : mettre en ligne le programme de cache sur le vps
-    private static String PRG_URL = "http://192.168.0.126/IG2I/une_saison_au_zoo/programme.php";
+    private static String PRG_URL = "http://unesaisonauzoo.paultournemaine.fr/programme.php"; // utilise un cache pour être sur qu'il y ait toujour un retour
     private Activity a;
     private UneSaisonAuZooApplication application;
 
