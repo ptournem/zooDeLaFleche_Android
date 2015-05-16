@@ -13,8 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.MapFragment;
+
 import fr.ig2i.unesaisonauzoo.R;
-import fr.ig2i.unesaisonauzoo.view.fragment.MapFragment;
+import fr.ig2i.unesaisonauzoo.callback.MapAsyncCallback;
 import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.ProgrammeTvFragment;
 
@@ -51,16 +53,19 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
-        if(position ==1){
+        MapFragment map = null;
+        if (position == 1) {
+
+            map = MapFragment.newInstance();
+            map.getMapAsync(new MapAsyncCallback(this));
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, MapFragment.newInstance())
+                    .replace(R.id.container, map)
                     .commit();
-        }
-        else if(position ==2){
+        } else if (position == 2) {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, ProgrammeTvFragment.newInstance())
                     .commit();
-        }else {
+        } else {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                     .commit();
@@ -69,8 +74,8 @@ public class MainActivity extends ActionBarActivity
 
     public void onSectionAttached(int number) {
         String[] sectionName = getResources().getStringArray(R.array.sectionName);
-        if(sectionName.length > (number-1)){
-            mTitle = sectionName[number-1];
+        if (sectionName.length > (number - 1)) {
+            mTitle = sectionName[number - 1];
         }
     }
 
