@@ -121,7 +121,7 @@ public class ProgrammeTvParser {
         if (stStop != null) {
             // TODO on mets en forme la date, le format est yyyymmddhhiiss +gmt
             try {
-                stop = xmlDateFormat.parse(stStart);
+                stop = xmlDateFormat.parse(stStop);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

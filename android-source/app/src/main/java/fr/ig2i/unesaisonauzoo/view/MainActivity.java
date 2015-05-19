@@ -3,7 +3,9 @@ package fr.ig2i.unesaisonauzoo.view;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +17,9 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.MapFragment;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.callback.MapAsyncCallback;
 import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
@@ -22,7 +27,7 @@ import fr.ig2i.unesaisonauzoo.view.fragment.ProgrammeTvFragment;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks , ProgrammeTvFragment.OnCalendarButtonClickedListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -54,14 +59,14 @@ public class MainActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment map = null;
-        if (position == 1) {
+        if (position == 1) { // accès
 
             map = MapFragment.newInstance();
             map.getMapAsync(new MapAsyncCallback(this));
             fragmentManager.beginTransaction()
                     .replace(R.id.container, map)
                     .commit();
-        } else if (position == 2) {
+        } else if (position == 2) { // programme tv
             fragmentManager.beginTransaction()
                     .replace(R.id.container, ProgrammeTvFragment.newInstance())
                     .commit();
@@ -113,6 +118,20 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void OnCalendarButtonClicked(Date startDt, String progName, Date endDt) {
+        Calendar beginTime = Calendar.getInstance();
+        beginTime.setTime(startDt);
+        Calendar endTime = Calendar.getInstance();
+        endTime.setTime(endDt);
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
+                .putExtra(CalendarContract.Events.TITLE, progName);
+        startActivity(intent);
     }
 
     /**

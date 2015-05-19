@@ -1,12 +1,15 @@
 package fr.ig2i.unesaisonauzoo.view.fragment;
 
 
-import android.os.Bundle;
+import android.app.Activity;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import java.util.Date;
 
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.adapter.ProgrammeTVAdapter;
@@ -19,6 +22,11 @@ import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
  */
 public class ProgrammeTvFragment extends Fragment {
     ListView listeProgramme;
+    private OnCalendarButtonClickedListener mListener = null;
+
+    public OnCalendarButtonClickedListener getmListener() {
+        return mListener;
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -51,7 +59,7 @@ public class ProgrammeTvFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_programme_tv, container, false);
-        }
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -61,8 +69,23 @@ public class ProgrammeTvFragment extends Fragment {
         listeProgramme = (ListView) getActivity().findViewById(R.id.LVProgrammeTV);
 
         // création de l'adapter
-        ProgrammeTVAdapter adapter = new ProgrammeTVAdapter(getActivity().getBaseContext(),(UneSaisonAuZooApplication) getActivity().getApplication());
+        ProgrammeTVAdapter adapter = new ProgrammeTVAdapter(getActivity().getBaseContext(), (UneSaisonAuZooApplication) getActivity().getApplication(), this);
         // ajout de l'adapter
         listeProgramme.setAdapter(adapter);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnCalendarButtonClickedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnCalendarButtonClickedListener");
+        }
+
+    }
+
+    public interface OnCalendarButtonClickedListener {
+        public void OnCalendarButtonClicked(Date startDt, String progName, Date endDt);
     }
 }

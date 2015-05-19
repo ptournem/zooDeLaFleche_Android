@@ -35,4 +35,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="loadMessage">Chargement de l\'application</string>
+
+    <string name="today">Aujourd\'hui</string>
 </resources>

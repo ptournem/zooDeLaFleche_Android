@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/mTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/mStart"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Title un saison au zoo qui dure longtemps longtemps longtemps"
-        android:textStyle="bold"
-        android:textSize="20dp" />
+        android:layout_marginTop="10dp"
+        android:layout_weight="2"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/mDesc"
-        android:layout_width="match_parent"
+        android:id="@+id/mLength"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Description blabla blablal blablalb ablbazeea blzeaze blbezaeaz" />
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textStyle="italic" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/calendarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_my_calendar" />
 
-        <TextView
-            android:id="@+id/mStart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sat 09 May 2015"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/mLength"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="30 Minutes"
-            android:textStyle="italic"
-            android:textAlignment="viewEnd"
-            android:gravity="end" />
-    </LinearLayout>
 </LinearLayout>
