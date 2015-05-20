@@ -14,20 +14,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.google.android.gms.maps.MapFragment;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
+import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.callback.MapAsyncCallback;
+import fr.ig2i.unesaisonauzoo.view.fragment.AccueilFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.ProgrammeTvFragment;
+import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks , ProgrammeTvFragment.OnCalendarButtonClickedListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener{
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "4YuvZ1XTztatfTfqjX5R6oWNz";
+    private static final String TWITTER_SECRET = "YvRwDYKs1NQWIX6Yj3aXexs4ycbZMtGV37OXb0VxSepOfX4AVZ";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -44,6 +55,10 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -59,21 +74,36 @@ public class MainActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment map = null;
-        if (position == 1) { // accès
+        switch (position) {
+            case 0:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, AccueilFragment.newInstance())
+                        .commit();
 
-            map = MapFragment.newInstance();
-            map.getMapAsync(new MapAsyncCallback(this));
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, map)
-                    .commit();
-        } else if (position == 2) { // programme tv
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, ProgrammeTvFragment.newInstance())
-                    .commit();
-        } else {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    .commit();
+
+
+                /*ListView tweets = (ListView) fragmentManager.findFragmentById(R.id.container).getView().findViewById(R.id.LVTweets);
+                tweets.setAdapter(tweetTimelineListAdapter);
+                */
+                break;
+            case 1: // accès
+
+                map = MapFragment.newInstance();
+                map.getMapAsync(new MapAsyncCallback(this));
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, map)
+                        .commit();
+                break;
+            case 2:// programme tv
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, ProgrammeTvFragment.newInstance())
+                        .commit();
+                break;
+            default:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
+                break;
         }
     }
 

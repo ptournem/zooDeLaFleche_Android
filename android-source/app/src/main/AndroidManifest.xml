@@ -2,17 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.ig2i.unesaisonauzoo" >
 
+    <!-- permission internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".model.UneSaisonAuZooApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyC_iKmFaw1b3yAkpGROQKaV6ru3aVxuqYI" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC_iKmFaw1b3yAkpGROQKaV6ru3aVxuqYI" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="346dd83f34544268c7a863916c9c182ba36a3614" />
 
         <activity
             android:name=".view.MainActivity"
@@ -21,19 +30,17 @@
         <activity
             android:name=".view.LoadActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"> <!--on bloque le mode paysage pour ne pas devoir gérer les onStop... -->
+            android:screenOrientation="portrait" > <!-- on bloque le mode paysage pour ne pas devoir gérer les onStop... -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!-- Librairie pour google map -->
         <uses-library android:name="com.google.android.maps" />
+
     </application>
 
-    <!-- permission internet -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

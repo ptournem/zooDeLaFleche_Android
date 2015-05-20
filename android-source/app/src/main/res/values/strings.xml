@@ -38,4 +38,7 @@
 
     <string name="today">Aujourd\'hui</string>
     <string name="nextProgrammeTV">Prochains épisodes</string>
+    <string name="timeline_empty">aucun tweet</string>
+    <string name="title_activity_twitter_test">TwitterTestActivity</string>
+    <string name="tweeterTweet">Derniers tweets</string>
 </resources>
