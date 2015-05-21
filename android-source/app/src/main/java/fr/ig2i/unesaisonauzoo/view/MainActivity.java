@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v4.widget.DrawerLayout;
@@ -35,7 +36,7 @@ import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener, EpisodeFragment.OnVideoItemOnClickListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "4YuvZ1XTztatfTfqjX5R6oWNz";
@@ -168,6 +169,11 @@ public class MainActivity extends ActionBarActivity
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
                 .putExtra(CalendarContract.Events.TITLE, progName);
         startActivity(intent);
+    }
+
+    @Override
+    public void OnVideoItemOnClickListener(String videoId) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/embed/"+videoId)));
     }
 
     /**

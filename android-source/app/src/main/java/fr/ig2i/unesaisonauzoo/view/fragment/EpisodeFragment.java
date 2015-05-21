@@ -1,14 +1,17 @@
 package fr.ig2i.unesaisonauzoo.view.fragment;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import fr.ig2i.unesaisonauzoo.R;
+import fr.ig2i.unesaisonauzoo.callback.VideoItemOnClickListener;
 import fr.ig2i.unesaisonauzoo.utils.LoadAsyncTaskEpisode;
 
 /**
@@ -23,9 +26,14 @@ public class EpisodeFragment extends Fragment {
      *
      * @return A new instance of fragment EpisodeFragment.
      */
-    // TODO: Rename and change types and number of parameters
 
     ListView episodes;
+
+    OnVideoItemOnClickListener mListener;
+
+    public OnVideoItemOnClickListener getmListener() {
+        return mListener;
+    }
 
     public static EpisodeFragment newInstance() {
         EpisodeFragment fragment = new EpisodeFragment();
@@ -56,8 +64,26 @@ public class EpisodeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        ListView episode = (ListView) getActivity().findViewById(R.id.lEpisodeTV);
+        episode.setOnItemClickListener(new VideoItemOnClickListener(episode,this));
+
         LoadAsyncTaskEpisode asyncTask = new LoadAsyncTaskEpisode(getActivity());
         asyncTask.execute();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try{
+            mListener = (OnVideoItemOnClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnVideoItemOnClickListener");
+        }
+    }
+
+    public interface OnVideoItemOnClickListener{
+        public void OnVideoItemOnClickListener(String videoId);
     }
 
 
