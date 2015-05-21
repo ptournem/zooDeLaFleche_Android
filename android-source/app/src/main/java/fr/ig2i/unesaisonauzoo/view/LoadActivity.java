@@ -43,6 +43,8 @@ public class LoadActivity extends Activity implements LoadDataAsyncResponse {
         }
         Intent goToMainActivity = new Intent(this, MainActivity.class);
         startActivity(goToMainActivity);
+        // on finie l'activité pour ne pas pouvoir revenir dessus
+        finish();
 
     }
 

@@ -3,6 +3,7 @@ package fr.ig2i.unesaisonauzoo.view;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -74,44 +75,39 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
+        Fragment next = null;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         MapFragment map = null;
+
+        // récupération du prochain fragment
         switch (position) {
-            case 0:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, AccueilFragment.newInstance())
-                        .commit();
-
-
-
-                /*ListView tweets = (ListView) fragmentManager.findFragmentById(R.id.container).getView().findViewById(R.id.LVTweets);
-                tweets.setAdapter(tweetTimelineListAdapter);
-                */
+            case 0:// accueil
+                next = AccueilFragment.newInstance();
                 break;
             case 1: // accès
-
                 map = MapFragment.newInstance();
                 map.getMapAsync(new MapAsyncCallback(this));
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, map)
-                        .commit();
+                next = map;
                 break;
             case 2:// programme tv
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, ProgrammeTvFragment.newInstance())
-                        .commit();
+                next = ProgrammeTvFragment.newInstance();
                 break;
             case 4: // épisode depuis youtube
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, EpisodeFragment.newInstance())
-                        .commit();
+                next = EpisodeFragment.newInstance();
                 break;
             default:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                        .commit();
+                next = PlaceholderFragment.newInstance(position + 1);
                 break;
         }
+
+        // passage au prochain fragment
+        transaction.replace(R.id.container, next);
+        // on stock dans le backStack
+        transaction.addToBackStack(null);
+        // on commit le changement
+        transaction.commit();
+
+
     }
 
     public void onSectionAttached(int number) {
@@ -171,9 +167,24 @@ public class MainActivity extends ActionBarActivity
         startActivity(intent);
     }
 
+    /**
+     * lorsque le bouton back est utilisé
+     */
+    public void onBackPressed() {
+        // si il reste des fragments dans la pile
+        if (getFragmentManager().getBackStackEntryCount() > 1) {
+            // on pop le dernier fragment
+            getFragmentManager().popBackStack();
+            // on mets le dernier item sélectionner dans le navigationDrawer
+            mNavigationDrawerFragment.goBackToLastSelectedItem();
+        }
+        // sinon, on fait l'action par défaut = revenir vers la précédente activité si elle existe
+        else super.onBackPressed();
+    }
+
     @Override
     public void OnVideoItemOnClickListener(String videoId) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/embed/"+videoId)));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/embed/" + videoId)));
     }
 
     /**

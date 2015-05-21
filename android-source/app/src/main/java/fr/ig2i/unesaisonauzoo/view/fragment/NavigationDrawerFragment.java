@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+
 import fr.ig2i.unesaisonauzoo.R;
 
 /**
@@ -59,6 +61,9 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+
+    // liste chainé pour stocker les positions
+    private LinkedList mStackPosition = new LinkedList();
 
     public NavigationDrawerFragment() {
     }
@@ -187,6 +192,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
+
+        mStackPosition.addLast(mCurrentSelectedPosition);
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -276,5 +283,15 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+
+    /**
+     * Change l'item selectionné pour revenir au dernier dans le navigationDrawer
+     */
+    public void goBackToLastSelectedItem(){
+        if (mDrawerListView != null) {
+            mDrawerListView.setItemChecked((int) mStackPosition.removeLast(), true);
+        }
     }
 }
