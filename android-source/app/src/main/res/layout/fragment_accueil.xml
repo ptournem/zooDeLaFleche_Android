@@ -1,42 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp">
-
-    <TextView
-        android:id="@+id/TV_Tweeter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/tweeterTweet"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+<fr.ig2i.unesaisonauzoo.utils.VerticalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/zoo_gris"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:padding="1dp">
+        android:padding="15dp">
 
         <TextView
-            android:id="@id/android:empty"
+            android:id="@+id/TV_Tweeter"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/timeline_empty"
-            android:background="@color/background_material_light"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/tweeterTweet"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/zoo_gris"
+            android:orientation="vertical"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@id/android:empty"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/background_material_light"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/timeline_empty" />
 
 
-        <ListView
-            android:id="@id/android:list"
+            <ListView
+                android:id="@id/android:list"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:divider="@color/background_material_light"
+                android:dividerHeight="2px"
+                android:drawSelectorOnTop="false" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/TV_Facebook"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:drawSelectorOnTop="false"
-            android:divider="@color/background_material_light"
-            android:dividerHeight="2px"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/facebookPost"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/zoo_gris"
+            android:minWidth="250dp"
+            android:orientation="vertical"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@+id/TV_ToDOFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/background_material_light"
+                android:text="todo : add facebook posts "
+                android:gravity="center"></TextView>
+
+        </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+</fr.ig2i.unesaisonauzoo.utils.VerticalScrollView>

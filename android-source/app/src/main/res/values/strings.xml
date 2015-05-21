@@ -42,4 +42,5 @@
     <string name="title_activity_twitter_test">TwitterTestActivity</string>
     <string name="tweeterTweet">Derniers tweets</string>
     <string name="ListeEpisodeTV">Liste des épisodes</string>
+    <string name="facebookPost">Derniers posts</string>
 </resources>
