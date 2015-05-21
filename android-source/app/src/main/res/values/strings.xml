@@ -41,4 +41,5 @@
     <string name="timeline_empty">aucun tweet</string>
     <string name="title_activity_twitter_test">TwitterTestActivity</string>
     <string name="tweeterTweet">Derniers tweets</string>
+    <string name="ListeEpisodeTV">Liste des épisodes</string>
 </resources>

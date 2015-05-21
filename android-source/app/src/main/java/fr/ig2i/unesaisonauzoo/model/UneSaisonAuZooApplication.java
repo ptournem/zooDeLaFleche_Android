@@ -60,35 +60,37 @@ public class UneSaisonAuZooApplication extends Application {
         return bStatut;
     }
 
-    public InputStream getDataStream(String adresse, Map<String, Object> data) {
+    public InputStream getDataStream(String adresse, Map<String, String> data) {
         String donnees = "";
         System.setProperty("http.keepAlive", "false");
         OutputStreamWriter writer = null;
         InputStream reader = null;
         URLConnection connexion = null;
         try {
-            if (data != null) {
-                for (Map.Entry<String, Object> entry : data.entrySet()) {
-                    donnees += URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue().toString(), "UTF-8");
-                }
-            }
-
             // On a envoyé les données à une adresse distante
             URL url = new URL(adresse);
             connexion = url.openConnection();
-            connexion.setDoOutput(true);
+            connexion.setDoInput(true);
 
-            // On envoie la requête ici
-            writer = new OutputStreamWriter(connexion.getOutputStream());
 
             // On insère les données dans notre flux
-            writer.write(donnees);
+            if (data != null) {
+                for (Map.Entry<String, String> entry : data.entrySet()) {
+                    donnees += URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8");
+                }
+                connexion.setDoOutput(true);
+                writer = new OutputStreamWriter(connexion.getOutputStream());
 
-            // Et on s'assure que le flux est vidé
-            writer.flush();
+                // On envoie la requête ici
+                writer.write(donnees);
+
+                // Et on s'assure que le flux est vidé
+                writer.flush();
+            }
 
             // on se connecte
             connexion.connect();
+
             // On lit la réponse ici
             reader = connexion.getInputStream();
         } catch (Exception e) {
@@ -110,7 +112,7 @@ public class UneSaisonAuZooApplication extends Application {
      * @param data    map pour les données post
      * @return String
      */
-    public String requete(String adresse, Map<String, Object> data) {
+    public String requete(String adresse, Map<String, String> data) {
         String templigne;
         String ligne = "";
 

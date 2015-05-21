@@ -28,13 +28,14 @@ import java.util.Date;
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.callback.MapAsyncCallback;
 import fr.ig2i.unesaisonauzoo.view.fragment.AccueilFragment;
+import fr.ig2i.unesaisonauzoo.view.fragment.EpisodeFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.NavigationDrawerFragment;
 import fr.ig2i.unesaisonauzoo.view.fragment.ProgrammeTvFragment;
 import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "4YuvZ1XTztatfTfqjX5R6oWNz";
@@ -97,6 +98,11 @@ public class MainActivity extends ActionBarActivity
             case 2:// programme tv
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, ProgrammeTvFragment.newInstance())
+                        .commit();
+                break;
+            case 4: // épisode depuis youtube
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, EpisodeFragment.newInstance())
                         .commit();
                 break;
             default:
