@@ -93,7 +93,10 @@ public class MainActivity extends ActionBarActivity
                 next = ProgrammeTvFragment.newInstance();
                 break;
             case 4: // épisode depuis youtube
-                next = EpisodeFragment.newInstance();
+                next = EpisodeFragment.newInstance(EpisodeFragment.TYPE_EPISODE);
+                break;
+            case 5: //video depuis youtube
+                next = EpisodeFragment.newInstance(EpisodeFragment.TYPE_VIDEO);
                 break;
             default:
                 next = PlaceholderFragment.newInstance(position + 1);

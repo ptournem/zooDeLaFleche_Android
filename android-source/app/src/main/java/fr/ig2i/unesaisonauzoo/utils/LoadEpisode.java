@@ -21,15 +21,17 @@ import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
  * Created by Mélanie on 20/05/2015.
  */
 public class LoadEpisode {
-    private static String REQUEST_URL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCZDxFeGRHAXz7Bp57HmxPxESxouPJzzWc&channelId=UC1v-9t_jmYxzTB6Pa4xZXpw&part=snippet,id&order=date&maxResults=20";
+    private static String REQUEST_URL_TEMPLATE = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCZDxFeGRHAXz7Bp57HmxPxESxouPJzzWc&channelId={channelId}&part=snippet,id&order=date&maxResults=20";
 
     private Activity a;
+    private String request;
     private UneSaisonAuZooApplication application;
 
-    public LoadEpisode(Activity a) {
+    public LoadEpisode(Activity a,String channelId) {
         this.a = a;
         this.application = (UneSaisonAuZooApplication) a.getApplication();
-
+        // recuperation du channel_ID
+        this.request = REQUEST_URL_TEMPLATE.replace("{channelId}",channelId);
 
     }
 
@@ -39,18 +41,25 @@ public class LoadEpisode {
         String desc;
         String thumbnail;
         String id;
+        Boolean isVideo;
 
         try {
 
-            String json = application.requete(REQUEST_URL, null);
+            String json = application.requete(this.request, null);
             try {
                 JSONObject jsonObject = new JSONObject(json);
                 JSONArray items = jsonObject.getJSONArray("items");
                 for (int i = 0; i < items.length(); i++) {
                     title = desc = thumbnail = id = null;
+                    isVideo = false;
 
                     try {
                         JSONObject item = items.getJSONObject(i);
+                        isVideo = item.getJSONObject("id").getString("kind").equals("youtube#video");
+                        // verification du format video et non un broadcast 
+                        if(!isVideo){
+                            continue;
+                        }
                         id = item.getJSONObject("id").getString("videoId");
                         JSONObject snippet = item.getJSONObject("snippet");
                         title = snippet.getString("title");

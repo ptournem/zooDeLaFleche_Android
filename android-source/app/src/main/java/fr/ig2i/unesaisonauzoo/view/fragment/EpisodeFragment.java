@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.callback.VideoItemOnClickListener;
@@ -26,19 +27,24 @@ public class EpisodeFragment extends Fragment {
      *
      * @return A new instance of fragment EpisodeFragment.
      */
+    public static int TYPE_VIDEO = 1;
+    public static int TYPE_EPISODE = 2;
 
     ListView episodes;
+    TextView title;
 
+    private int type;
     OnVideoItemOnClickListener mListener;
 
     public OnVideoItemOnClickListener getmListener() {
         return mListener;
     }
-
-    public static EpisodeFragment newInstance() {
+    // on met en parametre le type de la demande pour reconnaitre une video ou un episode
+    public static EpisodeFragment newInstance(int type) {
         EpisodeFragment fragment = new EpisodeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+        fragment.type = type;
         return fragment;
     }
 
@@ -65,10 +71,17 @@ public class EpisodeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         ListView episode = (ListView) getActivity().findViewById(R.id.lEpisodeTV);
-        episode.setOnItemClickListener(new VideoItemOnClickListener(episode,this));
+        episode.setOnItemClickListener(new VideoItemOnClickListener(episode, this));
 
-        LoadAsyncTaskEpisode asyncTask = new LoadAsyncTaskEpisode(getActivity());
+        LoadAsyncTaskEpisode asyncTask = new LoadAsyncTaskEpisode(getActivity(),this.type);
         asyncTask.execute();
+
+        if(this.type== TYPE_VIDEO){
+            // recuperation de la TextView
+            title = (TextView) getActivity().findViewById(R.id.EpisodeTV);
+            // si type = video, affichage du titre liste des videos
+            title.setText(getResources().getString(R.string.ListeVideos));
+        }
     }
 
     @Override

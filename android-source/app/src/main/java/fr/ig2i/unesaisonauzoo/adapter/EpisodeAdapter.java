@@ -51,6 +51,7 @@ public class EpisodeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        // recuperation de l'inflater
         LayoutInflater mInflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         EpisodeViewHolder viewHolder = null;
         if(convertView==null){
@@ -62,11 +63,12 @@ public class EpisodeAdapter extends BaseAdapter {
 
             convertView.setTag(viewHolder);
         }else{
+            //recuperation de la vue
             viewHolder = (EpisodeViewHolder) convertView.getTag();
         }
-
+        //recuper ation des episodes
         Episode e = getItem(position);
-
+        // si cette element existe
         if(e!=null){
             viewHolder.mDesc.setText(e.desc);
             viewHolder.mTitle.setText(e.title);
@@ -75,6 +77,7 @@ public class EpisodeAdapter extends BaseAdapter {
             Picasso.with(_context).load(e.thumbnails).into(viewHolder.mThumbnail);
 
         }
+        // on retourne la vue converti ou nouvelle si convertView était null
         return convertView;
     }
 
