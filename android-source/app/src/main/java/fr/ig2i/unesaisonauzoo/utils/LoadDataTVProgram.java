@@ -29,17 +29,20 @@ public class LoadDataTVProgram {
     public List<Programme> getData() throws IOException, XmlPullParserException {
         InputStream stream = null;
         List<Programme> programmes = null;
+        // récupération du parser
         ProgrammeTvParser programmeTvParser = new ProgrammeTvParser();
 
         try {
+            // on récupère le stream des datas
             stream = application.getDataStream(PRG_URL, null);
+            // on le parse
             programmes = programmeTvParser.parse(stream);
         } finally {
             if (stream != null) {
                 stream.close();
             }
         }
-
+        // on retourne la liste des programmes
         return programmes;
     }
 }

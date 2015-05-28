@@ -50,20 +50,31 @@ public class LoadEpisode {
                 JSONObject jsonObject = new JSONObject(json);
                 JSONArray items = jsonObject.getJSONArray("items");
                 for (int i = 0; i < items.length(); i++) {
+                    // initialisation des variables
                     title = desc = thumbnail = id = null;
                     isVideo = false;
 
                     try {
+                        // récupération de l'objet item
                         JSONObject item = items.getJSONObject(i);
+
+                        // isVideo est vrai si on a bien une video youtube dans le paramètre kind et non autre chose
                         isVideo = item.getJSONObject("id").getString("kind").equals("youtube#video");
-                        // verification du format video et non un broadcast 
+
+                        // si isVidéo est false, on passe à l'item suivant
                         if(!isVideo){
                             continue;
                         }
+                        // récupération de l'id de la video
                         id = item.getJSONObject("id").getString("videoId");
+                        // récupération du snippet
                         JSONObject snippet = item.getJSONObject("snippet");
+
+                        // récupération du title et de la description depuis le snippet
                         title = snippet.getString("title");
                         desc = snippet.getString("description");
+
+                        // récupération de l'url de la miniature
                         thumbnail = snippet.getJSONObject("thumbnails").getJSONObject("default").getString("url");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -73,6 +84,7 @@ public class LoadEpisode {
                     if (title == null || desc == null || thumbnail == null || id == null) {
                         continue;
                     }
+                    // ajout de l'épisode dans la liste
                     episodes.add(new Episode(title, desc, thumbnail, id));
 
                 }
@@ -83,7 +95,7 @@ public class LoadEpisode {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        // on renvoie la liste des épisodes
         return episodes;
     }
 }

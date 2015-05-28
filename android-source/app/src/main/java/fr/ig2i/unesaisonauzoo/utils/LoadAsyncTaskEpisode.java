@@ -30,8 +30,7 @@ public class LoadAsyncTaskEpisode extends AsyncTask<Void, Void, List<Episode>> {
     private UneSaisonAuZooApplication application;
 
 
-
-    public LoadAsyncTaskEpisode(Activity a,int type) {
+    public LoadAsyncTaskEpisode(Activity a, int type) {
         activity = a;
         application = (UneSaisonAuZooApplication) a.getApplication();
         this.type = type;
@@ -49,12 +48,16 @@ public class LoadAsyncTaskEpisode extends AsyncTask<Void, Void, List<Episode>> {
         // recuperation episode de la chaine unesaisonauzoo
         // recuperation des videos du zoo de la fleche
         // recherche du type afin d'utiliser le meme fragment
-        LoadEpisode loadEpisode = new LoadEpisode(activity,type==EpisodeFragment.TYPE_EPISODE?UNESAISONAUZOO_CHANNELID:ZOODELAFLECHE_CHANNELID);
+        LoadEpisode loadEpisode = new LoadEpisode(activity, type == EpisodeFragment.TYPE_EPISODE ? UNESAISONAUZOO_CHANNELID : ZOODELAFLECHE_CHANNELID);
         return loadEpisode.getData();
     }
+
     protected void onPostExecute(List<Episode> result) {
+        // on récupère la listView
         ListView episodes = (ListView) activity.findViewById(R.id.lEpisodeTV);
-        EpisodeAdapter adapter = new EpisodeAdapter(result,activity.getApplicationContext());
+        // on crée l'adapter
+        EpisodeAdapter adapter = new EpisodeAdapter(result, activity.getApplicationContext());
+        // on assigne l'adapter
         episodes.setAdapter(adapter);
     }
 

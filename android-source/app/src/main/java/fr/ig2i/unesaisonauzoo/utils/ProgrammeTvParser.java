@@ -93,6 +93,7 @@ public class ProgrammeTvParser {
         }
     }
 
+    // parse un programme du programme tv
     private Programme readProgramme(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, PROGRAMME_TAG);
         String title = null;
@@ -108,8 +109,8 @@ public class ProgrammeTvParser {
         SimpleDateFormat xmlDateFormat = new SimpleDateFormat("yyyyMMddHHmmss Z");
         stStart = parser.getAttributeValue(ns, START_ATTR);
         if (stStart != null) {
-            // TODO on mets en forme la date, le format est yyyymmddhhiiss +gmt
             try {
+                // mise en forme de la date
                 start = xmlDateFormat.parse(stStart);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -119,8 +120,8 @@ public class ProgrammeTvParser {
         // récupération de la variable stop
         stStop = parser.getAttributeValue(ns, STOP_ATTR);
         if (stStop != null) {
-            // TODO on mets en forme la date, le format est yyyymmddhhiiss +gmt
             try {
+                // mise en forme de la date
                 stop = xmlDateFormat.parse(stStop);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -132,26 +133,28 @@ public class ProgrammeTvParser {
                 continue;
             }
             String name = parser.getName();
-            if (name.equals(TITLE_TAG)) {
+            if (name.equals(TITLE_TAG)) { // parsage du title
                 title = readTitle(parser);
-            } else if (name.equals(LENGTH_TAG)) {
+            } else if (name.equals(LENGTH_TAG)) { // parsage de la durée
                 length = readLength(parser);
-            } else if (name.equals(SUBTITLE_TAG)) {
+            } else if (name.equals(SUBTITLE_TAG)) { // parsage du sous-titre
                 subtitle = readSubtitle(parser);
-            } else if (name.equals(DESC_TAG)) {
+            } else if (name.equals(DESC_TAG)) { // parsage de la description
                 desc = readDesc(parser);
             } else {
+                // sinon, on passe l'item
                 skip(parser);
             }
         }
 
-        // TODO : Filtre sur les programmes avec un match
+        // on filtre pour que ce soit bien un épisode d'une saison au zoo
         if (titleProgramme.matcher(title).matches()) {
             return new Programme(start, stop, title, subtitle, desc, length);
         }
         return null;
     }
 
+    // parsage du sous titre
     private String readSubtitle(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, SUBTITLE_TAG);
         String title = readText(parser);
@@ -159,6 +162,7 @@ public class ProgrammeTvParser {
         return title;
     }
 
+    // parsage de la durée
     private String readLength(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, LENGTH_TAG);
         String title = readText(parser);
@@ -166,6 +170,7 @@ public class ProgrammeTvParser {
         return title;
     }
 
+    // parsage du titre
     private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, TITLE_TAG);
         String title = readText(parser);
@@ -173,6 +178,7 @@ public class ProgrammeTvParser {
         return title;
     }
 
+    // lit un texte
     private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
         String result = "";
         if (parser.next() == XmlPullParser.TEXT) {
@@ -182,6 +188,7 @@ public class ProgrammeTvParser {
         return result;
     }
 
+    // parsage de la description
     private String readDesc(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, ns, DESC_TAG);
         String title = readText(parser);

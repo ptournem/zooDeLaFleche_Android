@@ -11,10 +11,12 @@ import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 
+// implémente LoadDataAsyncResponse pour pouvoir communiquer avec la tache asynchrone
 public class LoadActivity extends Activity implements LoadDataAsyncResponse {
     private static String ERR_LOAD = "Impossible de charger les données";
 
     LoadDataAsyncTask asynTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,27 +27,30 @@ public class LoadActivity extends Activity implements LoadDataAsyncResponse {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("Debug", "Start");
-        // on démarre l'activité en arrière plan
 
+        // on démarre le traitement en arrière plan
         asynTask = new LoadDataAsyncTask(this);
         asynTask.setDelegate(this);
         asynTask.execute();
 
     }
 
+    // en fin de tâche asynchrone
     @Override
     public void onProcessFinish(Boolean success) {
-        Log.i("Debug", "processFinish");
+        // si il y a eu une erreur
         if (!success) {
+            // on récupère l'application
             UneSaisonAuZooApplication application = (UneSaisonAuZooApplication) getApplication();
+            // on  alerte l'utilisateur que l'on a pas pu charger les données
             application.alerter(ERR_LOAD);
         }
+
+        // on se rend vers l'activité principale
         Intent goToMainActivity = new Intent(this, MainActivity.class);
         startActivity(goToMainActivity);
         // on finie l'activité pour ne pas pouvoir revenir dessus
         finish();
-
     }
 
     @Override

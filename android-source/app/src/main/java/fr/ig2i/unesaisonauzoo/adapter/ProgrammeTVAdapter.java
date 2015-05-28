@@ -87,13 +87,17 @@ public class ProgrammeTVAdapter extends BaseAdapter {
             // On place dans le holder les informations sur le programme
             holder.mLength.setText("(" + p.length + " minutes)");
 
+            // on set l'heure actuelle
             actual.setTime(p.start);
+
+            // on format l'heure de départ et on l'affiche
             if (actual.get(Calendar.YEAR) == now.get(Calendar.YEAR) && actual.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)) {
                 holder.mStart.setText(_application.getResources().getString(R.string.today) + startHourFormat.format(p.start));
             } else {
                 holder.mStart.setText(startFullFormat.format(p.start));
             }
 
+            // on ajoute le listener
             holder.calendarButton.setOnClickListener(new CalendarButtonListener(attachedFragment, p.start, p.title, p.stop));
         }
 

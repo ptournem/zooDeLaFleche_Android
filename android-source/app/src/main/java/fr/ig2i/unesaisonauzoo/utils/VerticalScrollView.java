@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+// class permettant d'avoir des listviews dans une scrollview et de pouvoir scroller dans les listview
+// avec la classe de base, cela ne fonctionne pas
 public class VerticalScrollView extends ScrollView{
 
     public VerticalScrollView(Context context) {

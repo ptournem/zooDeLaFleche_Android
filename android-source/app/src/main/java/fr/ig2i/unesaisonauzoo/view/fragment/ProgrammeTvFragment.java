@@ -34,7 +34,6 @@ public class ProgrammeTvFragment extends Fragment {
      *
      * @return A new instance of fragment ProgrammeTvFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ProgrammeTvFragment newInstance() {
         ProgrammeTvFragment fragment = new ProgrammeTvFragment();
         Bundle args = new Bundle();
@@ -77,6 +76,8 @@ public class ProgrammeTvFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+        // récupération du listener pour les communication avec l'activity
         try {
             mListener = (OnCalendarButtonClickedListener) activity;
         } catch (ClassCastException e) {

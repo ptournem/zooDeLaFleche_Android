@@ -19,14 +19,17 @@ public class MapAsyncCallback implements OnMapReadyCallback {
         this.act = act;
     }
 
+    // coordonnées du zoo de la flèche
     private static double lat = 47.675860;
     private static double lng = -0.045758;
 
     @Override
     public void onMapReady(GoogleMap map) {
+        //on déplace vers la latitude du zoo de la flèche
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(lat, lng), 16));
 
+        // on ajoute un marqueur au même coordonées
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
                 .title(act.getResources().getString(R.string.zooName)));

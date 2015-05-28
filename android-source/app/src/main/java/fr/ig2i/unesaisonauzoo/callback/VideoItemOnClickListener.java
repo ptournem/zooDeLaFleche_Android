@@ -33,11 +33,10 @@ public class VideoItemOnClickListener implements AdapterView.OnItemClickListener
             return;
         }
 
+        // on récupère l'item épisode
         Episode e = (Episode) adapter.getItem(position);
 
-
-
-        // on fait l'action
+        // on fait l'action en passant l'id de l'épisode au listener du fragment
         fragment.getmListener().OnVideoItemOnClickListener(e.id);
 
 

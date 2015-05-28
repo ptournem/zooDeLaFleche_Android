@@ -66,14 +66,14 @@ public class EpisodeAdapter extends BaseAdapter {
             //recuperation de la vue
             viewHolder = (EpisodeViewHolder) convertView.getTag();
         }
-        //recuper ation des episodes
+        //recuperation des episodes
         Episode e = getItem(position);
         // si cette element existe
         if(e!=null){
             viewHolder.mDesc.setText(e.desc);
             viewHolder.mTitle.setText(e.title);
 
-            // TODO : faire image
+            // récupération de l'image grâce à la librairie Picasso
             Picasso.with(_context).load(e.thumbnails).into(viewHolder.mThumbnail);
 
         }

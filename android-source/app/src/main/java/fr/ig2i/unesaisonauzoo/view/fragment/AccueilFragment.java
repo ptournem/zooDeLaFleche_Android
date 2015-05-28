@@ -39,10 +39,13 @@ public class AccueilFragment extends ListFragment    {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // récupération de la timeline du zoo de la flèche
         UserTimeline userTimeline = new UserTimeline.Builder()
                 .screenName("zoodelafleche")
                 .build();
+        //création de l'adapter
         TweetTimelineListAdapter tweetTimelineListAdapter = new TweetTimelineListAdapter(getActivity(), userTimeline);
+        // assignation de l'adapter
         setListAdapter(tweetTimelineListAdapter);
     }
 

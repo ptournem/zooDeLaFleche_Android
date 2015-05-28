@@ -103,6 +103,7 @@ public class MainActivity extends ActionBarActivity
                 break;
         }
 
+        // on verifie que l'on a bien un fragment
         if (next != null) {
             // passage au prochain fragment
             transaction.replace(R.id.container, next);
@@ -114,12 +115,6 @@ public class MainActivity extends ActionBarActivity
 
     }
 
-    public void onSectionAttached(int number) {
-        String[] sectionName = getResources().getStringArray(R.array.sectionName);
-        if (sectionName.length > (number - 1)) {
-            mTitle = sectionName[number - 1];
-        }
-    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -128,17 +123,24 @@ public class MainActivity extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
+    // lorsque l'on clic sur le calendrier d'un programme
     @Override
     public void OnCalendarButtonClicked(Date startDt, String progName, Date endDt) {
+        // on récupère la date de début
         Calendar beginTime = Calendar.getInstance();
         beginTime.setTime(startDt);
+        // on récupère la date de fin
         Calendar endTime = Calendar.getInstance();
         endTime.setTime(endDt);
+
+        // on crée l'intent d'insertion dans le calendrier
         Intent intent = new Intent(Intent.ACTION_INSERT)
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
                 .putExtra(CalendarContract.Events.TITLE, progName);
+
+        // on démarre l'intent
         startActivity(intent);
     }
 
@@ -157,8 +159,10 @@ public class MainActivity extends ActionBarActivity
         else super.onBackPressed();
     }
 
+    // lorsque l'on clique sur une vidéo
     @Override
     public void OnVideoItemOnClickListener(String videoId) {
+        // on démarre un intent de visualisation de la vidéo dont on a l'id
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/embed/" + videoId)));
     }
 
