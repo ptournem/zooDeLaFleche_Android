@@ -3,7 +3,7 @@ package fr.ig2i.unesaisonauzoo.model;
 import java.util.Date;
 
 /**
- * Created by Mélanie on 20/05/2015.
+ * Created by Melanie on 20/05/2015.
  */
 public class Episode {
 

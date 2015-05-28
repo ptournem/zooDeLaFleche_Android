@@ -20,23 +20,20 @@ public class LoadDataAsyncTask extends AsyncTask<Application, Void, Boolean> {
     private Activity activity;
     private UneSaisonAuZooApplication application;
     private Boolean loadProgram = true;
-    private Boolean loadSpectaclePlanning = true;
 
     public LoadDataAsyncTask(Activity a) {
         activity = a;
         application = (UneSaisonAuZooApplication) a.getApplication();
     }
 
-    public LoadDataAsyncTask(Activity a, Boolean loadProgram, Boolean loadSpectaclePlanning) {
+    public LoadDataAsyncTask(Activity a, Boolean loadProgram) {
 
         this.loadProgram = loadProgram;
-        this.loadSpectaclePlanning = loadSpectaclePlanning;
         new LoadDataAsyncTask(a);
     }
 
     public void setDelegate(LoadDataAsyncResponse delegate) {
         this.delegate = delegate;
-        Log.i("Debug", "SetDelegate");
     }
 
 
@@ -44,8 +41,6 @@ public class LoadDataAsyncTask extends AsyncTask<Application, Void, Boolean> {
     protected Boolean doInBackground(Application... qs) {
         Boolean success = true;
         // on récupère les données que l'on injecte dans l'application
-        Log.i("Debug", "doInBackground");
-        //TODO : remplacer le sleep par la récupération du programme tv + du planning des spectacles
         if (!application.verifReseau()) {
             return false;
         }
@@ -65,21 +60,11 @@ public class LoadDataAsyncTask extends AsyncTask<Application, Void, Boolean> {
             }
         }
 
-        if (!application.verifReseau()) {
-            return false;
-        }
-
-        // récupération du planning
-        if (this.loadSpectaclePlanning) {
-
-        }
-
         return success;
 
     }
 
     protected void onPostExecute(Boolean result) {
-        Log.i("Debug", "onPostExecute");
         // on appelle le délégue si il n'est pas nukk
         if (delegate != null) {
             delegate.onProcessFinish(result);

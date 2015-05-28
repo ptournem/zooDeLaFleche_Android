@@ -19,7 +19,7 @@ import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 import fr.ig2i.unesaisonauzoo.view.fragment.EpisodeFragment;
 
 /**
- * Created by Mélanie on 20/05/2015.
+ * Created by Melanie on 20/05/2015.
  */
 public class LoadAsyncTaskEpisode extends AsyncTask<Void, Void, List<Episode>> {
 
@@ -46,7 +46,7 @@ public class LoadAsyncTaskEpisode extends AsyncTask<Void, Void, List<Episode>> {
             return null;
         }
 
-        // récupération episode de la chaine unesaisonauzoo
+        // recuperation episode de la chaine unesaisonauzoo
         // recuperation des videos du zoo de la fleche
         // recherche du type afin d'utiliser le meme fragment
         LoadEpisode loadEpisode = new LoadEpisode(activity,type==EpisodeFragment.TYPE_EPISODE?UNESAISONAUZOO_CHANNELID:ZOODELAFLECHE_CHANNELID);

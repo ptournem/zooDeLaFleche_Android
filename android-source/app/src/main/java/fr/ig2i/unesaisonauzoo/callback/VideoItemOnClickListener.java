@@ -14,7 +14,7 @@ import fr.ig2i.unesaisonauzoo.model.Episode;
 import fr.ig2i.unesaisonauzoo.view.fragment.EpisodeFragment;
 
 /**
- * Created by Mélanie on 21/05/2015.
+ * Created by Melanie on 21/05/2015.
  */
 public class VideoItemOnClickListener implements AdapterView.OnItemClickListener {
 
@@ -27,7 +27,7 @@ public class VideoItemOnClickListener implements AdapterView.OnItemClickListener
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // récupération de l'épisode
+        // recuperation de l'episode
         EpisodeAdapter adapter =  (EpisodeAdapter) listView.getAdapter();
         if(adapter == null){
             return;

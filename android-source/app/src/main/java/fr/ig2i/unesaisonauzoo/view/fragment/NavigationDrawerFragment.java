@@ -62,7 +62,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    // liste chainé pour stocker les positions
+    // liste chaine pour stocker les positions
     private LinkedList mStackPosition = new LinkedList();
 
     public NavigationDrawerFragment() {
@@ -236,24 +236,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // If the drawer is open, show the global app actions in the action bar. See also
-        // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
-            showGlobalContextActionBar();
-        }
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -287,9 +271,9 @@ public class NavigationDrawerFragment extends Fragment {
 
 
     /**
-     * Change l'item selectionné pour revenir au dernier dans le navigationDrawer
+     * Change l'item selectionne pour revenir au dernier dans le navigationDrawer
      */
-    public void goBackToLastSelectedItem(){
+    public void goBackToLastSelectedItem() {
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked((int) mStackPosition.removeLast(), true);
         }

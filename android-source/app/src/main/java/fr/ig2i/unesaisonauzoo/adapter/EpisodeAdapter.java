@@ -20,7 +20,7 @@ import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 import fr.ig2i.unesaisonauzoo.view.fragment.EpisodeFragment;
 
 /**
- * Created by Mélanie on 20/05/2015.
+ * Created by Melanie on 20/05/2015.
  */
 public class EpisodeAdapter extends BaseAdapter {
 
@@ -77,7 +77,7 @@ public class EpisodeAdapter extends BaseAdapter {
             Picasso.with(_context).load(e.thumbnails).into(viewHolder.mThumbnail);
 
         }
-        // on retourne la vue converti ou nouvelle si convertView était null
+        // on retourne la vue converti ou nouvelle si convertView etait null
         return convertView;
     }
 

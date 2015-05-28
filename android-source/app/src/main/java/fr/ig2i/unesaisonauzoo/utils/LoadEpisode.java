@@ -18,7 +18,7 @@ import fr.ig2i.unesaisonauzoo.model.Programme;
 import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 /**
- * Created by Mélanie on 20/05/2015.
+ * Created by Melanie on 20/05/2015.
  */
 public class LoadEpisode {
     private static String REQUEST_URL_TEMPLATE = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCZDxFeGRHAXz7Bp57HmxPxESxouPJzzWc&channelId={channelId}&part=snippet,id&order=date&maxResults=20";
@@ -69,7 +69,7 @@ public class LoadEpisode {
                         e.printStackTrace();
                     }
 
-                    // vérifier que title, desc et thumbnail et id ne sont pas null
+                    // verifier que title, desc et thumbnail et id ne sont pas null
                     if (title == null || desc == null || thumbnail == null || id == null) {
                         continue;
                     }

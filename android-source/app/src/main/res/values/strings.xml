@@ -16,20 +16,16 @@
         <item>Accueil</item>
         <item>Accès</item>
         <item>Programme TV</item>
-        <item>Spectacles</item>
         <item>Episodes</item>
         <item>Vidéos</item>
-        <item>Actualitées</item>
     </string-array>
 
     <string-array name="sectionName">
         <item>Accueil</item>
         <item>Accès au zoo</item>
         <item>Prochain épisodes</item>
-        <item>Spectacles</item>
         <item>Episodes disponibles</item>
         <item>Vidéos disponibles</item>
-        <item>Actualitées</item>
     </string-array>
     <string name="title_activity_load">LoadActivity</string>
 
