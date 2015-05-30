@@ -10,14 +10,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import fr.ig2i.unesaisonauzoo.model.Episode;
 import fr.ig2i.unesaisonauzoo.R;
-import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
-import fr.ig2i.unesaisonauzoo.view.fragment.EpisodeFragment;
+import fr.ig2i.unesaisonauzoo.model.Episode;
 
 /**
  * Created by Melanie on 20/05/2015.
@@ -73,7 +69,7 @@ public class EpisodeAdapter extends BaseAdapter {
             viewHolder.mDesc.setText(e.desc);
             viewHolder.mTitle.setText(e.title);
 
-            // récupération de l'image grâce à la librairie Picasso
+            // recuperation de l'image grace a la librairie Picasso
             Picasso.with(_context).load(e.thumbnails).into(viewHolder.mThumbnail);
 
         }

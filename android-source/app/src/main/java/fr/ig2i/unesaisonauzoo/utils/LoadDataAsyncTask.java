@@ -3,7 +3,6 @@ package fr.ig2i.unesaisonauzoo.utils;
 import android.app.Activity;
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParserException;
 

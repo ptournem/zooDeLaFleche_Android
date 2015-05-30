@@ -1,8 +1,6 @@
 package fr.ig2i.unesaisonauzoo.view;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,18 +9,10 @@ import android.provider.CalendarContract;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.google.android.gms.maps.MapFragment;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
-import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,7 +27,7 @@ import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener, EpisodeFragment.OnVideoItemOnClickListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ProgrammeTvFragment.OnCalendarButtonClickedListener, EpisodeFragment.OnVideoItemOnClickListener, AccueilFragment.OnPostClickedListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "4YuvZ1XTztatfTfqjX5R6oWNz";
@@ -166,4 +156,11 @@ public class MainActivity extends ActionBarActivity
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/embed/" + videoId)));
     }
 
+    @Override
+    public void onPostClicked(String id) {
+
+        String url = "https://www.facebook.com/318319208254989/posts/"+id;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
 }

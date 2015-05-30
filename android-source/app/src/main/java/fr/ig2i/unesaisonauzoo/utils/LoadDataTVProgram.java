@@ -1,7 +1,6 @@
 package fr.ig2i.unesaisonauzoo.utils;
 
 import android.app.Activity;
-import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -9,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 import fr.ig2i.unesaisonauzoo.model.Programme;
+import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 /**
  * Created by Paul on 02/05/2015.

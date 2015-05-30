@@ -5,16 +5,11 @@ import android.app.Activity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import fr.ig2i.unesaisonauzoo.model.Episode;
-import fr.ig2i.unesaisonauzoo.model.Programme;
 import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
 
 /**
@@ -55,26 +50,26 @@ public class LoadEpisode {
                     isVideo = false;
 
                     try {
-                        // récupération de l'objet item
+                        // recuperation de l'objet item
                         JSONObject item = items.getJSONObject(i);
 
-                        // isVideo est vrai si on a bien une video youtube dans le paramètre kind et non autre chose
+                        // isVideo est vrai si on a bien une video youtube dans le parametre kind et non autre chose
                         isVideo = item.getJSONObject("id").getString("kind").equals("youtube#video");
 
-                        // si isVidéo est false, on passe à l'item suivant
+                        // si isVideo est false, on passe a l'item suivant
                         if(!isVideo){
                             continue;
                         }
-                        // récupération de l'id de la video
+                        // recuperation de l'id de la video
                         id = item.getJSONObject("id").getString("videoId");
-                        // récupération du snippet
+                        // recuperation du snippet
                         JSONObject snippet = item.getJSONObject("snippet");
 
-                        // récupération du title et de la description depuis le snippet
+                        // recuperation du title et de la description depuis le snippet
                         title = snippet.getString("title");
                         desc = snippet.getString("description");
 
-                        // récupération de l'url de la miniature
+                        // recuperation de l'url de la miniature
                         thumbnail = snippet.getJSONObject("thumbnails").getJSONObject("default").getString("url");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -84,7 +79,7 @@ public class LoadEpisode {
                     if (title == null || desc == null || thumbnail == null || id == null) {
                         continue;
                     }
-                    // ajout de l'épisode dans la liste
+                    // ajout de l'episode dans la liste
                     episodes.add(new Episode(title, desc, thumbnail, id));
 
                 }
@@ -95,7 +90,7 @@ public class LoadEpisode {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // on renvoie la liste des épisodes
+        // on renvoie la liste des episodes
         return episodes;
     }
 }

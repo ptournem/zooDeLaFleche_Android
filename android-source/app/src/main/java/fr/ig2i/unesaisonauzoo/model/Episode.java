@@ -1,7 +1,5 @@
 package fr.ig2i.unesaisonauzoo.model;
 
-import java.util.Date;
-
 /**
  * Created by Melanie on 20/05/2015.
  */

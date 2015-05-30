@@ -1,15 +1,9 @@
 package fr.ig2i.unesaisonauzoo.utils;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ListView;
 
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
 import java.util.List;
 
 import fr.ig2i.unesaisonauzoo.R;
@@ -53,9 +47,9 @@ public class LoadAsyncTaskEpisode extends AsyncTask<Void, Void, List<Episode>> {
     }
 
     protected void onPostExecute(List<Episode> result) {
-        // on récupère la listView
+        // on recupere la listView
         ListView episodes = (ListView) activity.findViewById(R.id.lEpisodeTV);
-        // on crée l'adapter
+        // on cree l'adapter
         EpisodeAdapter adapter = new EpisodeAdapter(result, activity.getApplicationContext());
         // on assigne l'adapter
         episodes.setAdapter(adapter);

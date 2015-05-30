@@ -64,13 +64,13 @@
             android:orientation="vertical"
             android:padding="1dp">
 
-            <TextView
-                android:id="@+id/TV_ToDOFacebook"
+            <ListView
+                android:id="@+id/LV_Facebook"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@color/background_material_light"
+                android:background="@color/zoo_white"
                 android:text="todo : add facebook posts "
-                android:gravity="center"></TextView>
+                android:gravity="center"></ListView>
 
         </LinearLayout>
 

@@ -16,8 +16,6 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import fr.ig2i.unesaisonauzoo.model.Programme;
-
 /**
  * Created by Paul on 02/05/2015.
  */

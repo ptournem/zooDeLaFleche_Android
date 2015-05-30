@@ -3,12 +3,11 @@ package fr.ig2i.unesaisonauzoo.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncResponse;
-import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncTask;
 import fr.ig2i.unesaisonauzoo.R;
 import fr.ig2i.unesaisonauzoo.model.UneSaisonAuZooApplication;
+import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncResponse;
+import fr.ig2i.unesaisonauzoo.utils.LoadDataAsyncTask;
 
 
 // implémente LoadDataAsyncResponse pour pouvoir communiquer avec la tache asynchrone

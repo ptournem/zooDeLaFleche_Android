@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,16 +70,16 @@ public class EpisodeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // récupération de la listView des épisodes
+        // recuperation de la listView des episodes
         ListView episode = (ListView) getActivity().findViewById(R.id.lEpisodeTV);
         // ajout du listener
         episode.setOnItemClickListener(new VideoItemOnClickListener(episode, this));
 
-        // récupération des vidéos avec une async task à laquel on envoie le type de vidéo que l'on veut (channel du zoo de la flèche ou épisode d'une saison au zoo )
+        // recuperation des videos avec une async task a laquel on envoie le type de video que l'on veut (channel du zoo de la fleche ou episode d'une saison au zoo )
         LoadAsyncTaskEpisode asyncTask = new LoadAsyncTaskEpisode(getActivity(),this.type);
         asyncTask.execute();
 
-        // si le type demandé est vidéo, on change le titre du fragment
+        // si le type demande est video, on change le titre du fragment
         if(this.type== TYPE_VIDEO){
             // recuperation de la TextView
             title = (TextView) getActivity().findViewById(R.id.EpisodeTV);
