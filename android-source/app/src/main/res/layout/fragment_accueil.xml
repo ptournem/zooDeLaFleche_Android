@@ -70,7 +70,8 @@
                 android:layout_height="250dp"
                 android:background="@color/zoo_white"
                 android:text="todo : add facebook posts "
-                android:gravity="center"></ListView>
+                android:gravity="center"
+                android:focusable="false"></ListView>
 
         </LinearLayout>
 

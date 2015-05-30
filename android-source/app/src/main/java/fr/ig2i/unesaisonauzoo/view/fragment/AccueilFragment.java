@@ -87,7 +87,7 @@ public class AccueilFragment extends ListFragment    {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        // on récupère le listener pour les clicks sur post FB
+        // on recupere le listener pour les clicks sur post FB
         try{
             mListener = (OnPostClickedListener) activity;
         } catch (ClassCastException e) {
